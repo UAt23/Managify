@@ -1,10 +1,11 @@
 import './App.scss'
+import Sidebar from './components/layout/Sidebar'
 
 function App() {
 
   return (
     <>
-      <div>asd</div>
+      <Sidebar />
     </>
   )
 }
