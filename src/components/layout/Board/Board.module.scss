@@ -1,0 +1,32 @@
+.boardWrapper {
+   display: flex;
+   flex-direction: column;
+   row-gap: 1.25rem;
+   height: 100%;
+   width: 100%;
+
+   .title {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      column-gap: 0.5rem;
+
+      .colorBall {
+         width: 0.5rem;
+         height: 0.5rem;
+         border-radius: 50%;
+         background-color: #70A3F3;
+      }
+   }
+
+   .taskList {
+      width: 100%;
+      min-width: 16.5rem;
+      min-height: 4.25rem;
+      padding: 0.75rem;
+      background: #191B1F;
+      border-radius: 0.75rem;
+   }
+
+}

@@ -13,6 +13,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { Boards } from "../Board";
 
 const drawerWidth = 296;
 
@@ -32,9 +33,9 @@ const closedMixin = (theme: Theme): CSSObject => ({
 		duration: theme.transitions.duration.leavingScreen,
 	}),
 	overflowX: "hidden",
-	width: `calc(${theme.spacing(7)} + 1px)`,
+	width: `74px`,
 	[theme.breakpoints.up("sm")]: {
-		width: `calc(${theme.spacing(8)} + 1px)`,
+		width: `74px`,
 	},
    backgroundColor: '#191B1F',
 });
@@ -66,7 +67,7 @@ const Drawer = styled(MuiDrawer, {
 	}),
 }));
 
-export default function Sidebar() {
+export function Sidebar() {
 	const [open, setOpen] = React.useState(false);
 
 	const handleDrawer = () => {
@@ -78,7 +79,7 @@ export default function Sidebar() {
          display: "flex",
          alignSelf: 'flex-end', 
          height: '100%',
-         width: open ? `calc(100% - ${drawerWidth}px)` : '100%'
+         width: open ? `calc(100% - ${drawerWidth}px)` : `calc(100% - 73px)`
          }}>
 			<Drawer variant="permanent" open={open}>
 				<DrawerHeader>
@@ -88,9 +89,19 @@ export default function Sidebar() {
                   }} 
                   onClick={handleDrawer}>
                      {!open ? (
-                        <ChevronRightIcon />
+                        <ChevronRightIcon sx={{
+                           width: '40px',
+                           height: '40px',
+                           backgroundColor: '#2A2D32',
+                           borderRadius: '50%'
+                        }} />
                      ) : (
-                        <ChevronLeftIcon />
+                        <ChevronLeftIcon sx={{
+                           width: '40px',
+                           height: '40px',
+                           backgroundColor: '#2A2D32',
+                           borderRadius: '50%'
+                        }} />
                      )}
 					</IconButton>
 				</DrawerHeader>
@@ -149,9 +160,8 @@ export default function Sidebar() {
                borderRadius: '12px',
                backgroundColor: '#2A2D32',
             }}
-         
-         >
-				
+				>
+					<Boards />
 			</Box>
 		</Box>
 	);
