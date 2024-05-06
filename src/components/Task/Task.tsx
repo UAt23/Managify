@@ -16,7 +16,6 @@ const Task = () => {
          </Typography>
          <div className={styles.tags}>
             <Tag />
-            <Tag />
          </div>
       </div>
    );

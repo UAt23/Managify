@@ -115,6 +115,25 @@ main {
     color: #94a3b8;
 }
 
+::-webkit-scrollbar {
+    width: 0.75rem;
+    border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 0.25rem 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7E878D;
+    border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #F0F6FE;
+}   
+
 @media screen and (min-width: 720px) {
     .logo {
         display: initial;

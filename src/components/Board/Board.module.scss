@@ -16,11 +16,13 @@
          width: 0.5rem;
          height: 0.5rem;
          border-radius: 50%;
-         background-color: #70A3F3;
       }
    }
 
    .taskList {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.25rem;
       width: 100%;
 
    }
