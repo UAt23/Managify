@@ -1,0 +1,27 @@
+.wrapper {
+   display: flex;
+   flex-direction: column;
+   row-gap: 0.75rem;
+   
+   padding: 0.75rem;
+   min-width: 16.5rem;
+   min-height: 4.25rem;
+   background: #191B1F;
+   border-radius: 0.75rem;
+
+   .coverPhoto {
+      object-fit: cover;
+      border-radius: 0.5rem;
+      width: 100%;
+      height: 5.8125rem;
+   }
+
+   .tags {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      column-gap: 0.5rem;
+
+      width: 100%;
+   }
+}
