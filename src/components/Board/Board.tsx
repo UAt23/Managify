@@ -1,9 +1,9 @@
 import styles from './Board.module.scss'
 import Task from '../Task/Task'
+import AddTask from '../AddTask/AddTask'
 import { BoardColumn } from '../../models/boards.model'
 
-import { Typography } from '@mui/material'
-import { AddRounded } from '@mui/icons-material'
+import Typography from '@mui/material/Typography'
 
 interface BoardProps {
   column: BoardColumn
@@ -26,16 +26,8 @@ export const Board = (props: BoardProps) => {
       </div>
       <div className={styles.taskList}>
         <Task />
-        <Task />
-        <Task />
       </div>
-      <div className={styles.addButton}>
-        <span>Add new task card</span>
-        <AddRounded sx={{
-          width: '1.8rem',
-          height: '1.8rem'
-        }} />
-      </div>
+      <AddTask />
     </div>
   )
 } 
