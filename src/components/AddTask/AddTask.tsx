@@ -3,6 +3,7 @@ import { Fragment, useState } from "react";
 import Button from "@mui/material/Button";
 import {
 	alpha,
+	Box,
 	FormControl,
 	InputBase,
 	InputLabel,
@@ -25,6 +26,7 @@ import styles from "./AddTask.module.scss";
 import { Tick } from "../icons";
 import { boards } from "../../constants/boards";
 import { BoardColumn } from "../../models/boards.model";
+import { TagInfo, tags } from "../../constants/tags";
 
 const BootstrapDialog = styled(Dialog)(() => ({
 	"& .MuiDialog-paper": {
@@ -48,6 +50,8 @@ const InputField = styled(InputBase)(({ theme }) => ({
 		marginTop: theme.spacing(3),
 	},
 	"& .MuiInputBase-input": {
+		display: 'flex',
+		columnGap: '.25rem',
 		color: "#FEF7EE",
 		borderRadius: ".75rem",
 		position: "relative",
@@ -83,21 +87,9 @@ const MenuProps = {
 			background: '#191B1F',
 			color: '#FEF7EE'
 		},
+		
 	},
 };
-
-const names = [
-	'Oliver Hansen',
-	'Van Henry',
-	'April Tucker',
-	'Ralph Hubbard',
-	'Omar Alexander',
-	'Carlos Abbott',
-	'Miriam Wagner',
-	'Bradley Wilkerson',
-	'Virginia Andrews',
-	'Kelly Snyder',
-];
 
 function getStyles(name: string, boardName: string[], theme: Theme) {
 	return {
@@ -112,14 +104,25 @@ export default function AddTask() {
 	const theme = useTheme();
 	const [open, setOpen] = useState(false);
 	const [boardName, setBoardName] = useState<string[]>([]);
+	const [selectedTag, setSelectedTag] = useState<string[]>([]);
 
 	const boardOptions: Array<BoardColumn> = Object.values(boards).map((item) => item)
+	const tagOptions: Array<TagInfo> = Object.values(tags).map((item) => item)
 
 	const handleChange = (event: SelectChangeEvent<typeof boardName>) => {
 		const {
 			target: { value },
 		} = event;
 		setBoardName(
+			typeof value === "string" ? value.split(",") : value
+		);
+	};
+	
+	const handleTagSelection = (event: SelectChangeEvent<typeof selectedTag>) => {
+		const {
+			target: { value },
+		} = event;
+		setSelectedTag(
 			typeof value === "string" ? value.split(",") : value
 		);
 	};
@@ -215,9 +218,14 @@ export default function AddTask() {
 						}}
 					>
 						<InputLabel
+							disableAnimation={true}
+							shrink={false}
 							htmlFor="task-name-input"
 							sx={{
 								color: "#7E878D !important",
+								position: 'initial',
+								fontFamily: 'inherit',
+								fontSize: '0.75rem'
 							}}
 						>
 							Task name
@@ -265,8 +273,14 @@ export default function AddTask() {
 										marginBottom: '.25rem',
 									}}
 								>
-									<span className={styles.colorBall} style={{backgroundColor: `${option.color}`}}></span>
-									{option.title}
+									<Box sx={{
+										display: 'flex',
+										flexDirection: 'row',
+										alignItems: 'center'
+									}}>
+										<span className={styles.colorBall} style={{backgroundColor: `${option.color}`}}></span>
+										{option.title}
+									</Box>
 								</MenuItem>
 
 							))}
@@ -295,24 +309,37 @@ export default function AddTask() {
 							id="tags-input"
 							IconComponent={() => <AddRounded sx={{display: 'none'}} />}
 							multiple
-							value={boardName}
-							onChange={handleChange}
+							value={selectedTag}
+							onChange={handleTagSelection}
 							input={<InputField />}
 							labelId="status-input"
 							MenuProps={MenuProps}
 						>
-							{names.map((name) => (
+							{tagOptions.map((tag) => (
 								<MenuItem
-									key={name}
-									value={name}
-									style={getStyles(name, boardName, theme)}
+									key={tag.title}
+									value={tag.title}
+									style={getStyles(tag.title, selectedTag, theme)}
 									sx={{
 										borderRadius: '.25rem',
-										background: 'red',
+										background: tag.background,
+										color: tag.color,
 										marginBottom: '.25rem',
 									}}
 								>
-									{name}
+									<div 
+										className={styles.tagSelected}
+										style={
+											selectedTag.includes(tag.title) 
+												? 
+													{
+														background: tag.background,
+														color: tag.color,
+													}
+												: {}
+									}>
+										{tag.title}
+									</div>
 								</MenuItem>
 							))}
 						</Select>
