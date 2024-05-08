@@ -20,6 +20,8 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
+
+   margin-bottom: .2rem;
 }
 
 .coverSelectionBox {
@@ -39,8 +41,7 @@
       left: 0;
       background: rgba(25, 27, 31, 0.90);
       opacity: 0;
-      transition: all 0.4s;
-      -webkit-transition: all 0.5s;
+      transition: all 0.2s ease;
    }
 
    &:hover::after {

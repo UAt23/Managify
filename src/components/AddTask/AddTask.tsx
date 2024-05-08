@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 
 import Button from "@mui/material/Button";
-import { styled } from "@mui/material";
+import { alpha, FormControl, InputBase, InputLabel, styled } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -14,16 +14,49 @@ import AddRounded from "@mui/icons-material/AddRounded";
 import styles from "./AddTask.module.scss";
 import { Tick } from "../icons";
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+const BootstrapDialog = styled(Dialog)(() => ({
 	"& .MuiDialog-paper": {
-		padding: "1rem 2rem",
+		padding: "1rem .5rem",
 		background: "#2A2D32",
 		color: "#FEF7EE",
 		borderRadius: "0.75rem",
 	},
-	"& .MuiDialogContent-root": {},
+	"& .MuiDialogContent-root": {
+		display: 'flex',
+		flexDirection: 'column',
+		rowGap: '1.5rem'
+	},
 	"& .MuiDialogActions-root": {
-		padding: theme.spacing(1),
+		padding: "1.5rem",
+	},
+}));
+
+const InputField = styled(InputBase)(({ theme }) => ({
+	"label + &": {
+		marginTop: theme.spacing(3),
+	},
+	"& .MuiInputBase-input": {
+		color: '#FEF7EE',
+		borderRadius: '.75rem',
+		position: "relative",
+		backgroundColor: "transparent",
+		border: "2px solid #3A3E44",
+		// borderColor: theme.palette.mode === "light" ? "#E0E3E7" : "#2D3843",
+		fontSize: 16,
+		width: "100%",
+		padding: ".5rem",
+		transition: theme.transitions.create([
+			"border-color",
+			"background-color",
+			"box-shadow",
+		]),
+		"&:focus": {
+			boxShadow: `${alpha(
+				'#7E878D',
+				0.25
+			)} 0 0 0 0.2rem`,
+			borderColor: '#7E878D',
+		},
 	},
 }));
 
@@ -56,8 +89,11 @@ export default function AddTask() {
 				<div className={styles.header}>
 					<DialogTitle
 						sx={{
-							fontSize: "1.25rem",
-							fontWeight: "500",
+							fontSize: "1.1rem",
+							fontWeight: "700",
+							letterSpacing: "0.02rem;",
+							paddingTop: 0,
+							paddingBottom: 0,
 						}}
 						id="customized-dialog-title"
 					>
@@ -87,28 +123,46 @@ export default function AddTask() {
 								// onClick={handleClose}
 								sx={{
 									color: "#FEF7EE",
-									padding: '.625rem',
+									background: "#3662E3",
+									padding: ".625rem",
 									fontSize: ".875rem",
 									textTransform: "none",
 									borderRadius: "2.5rem",
 								}}
 							>
-								Cancel
+								Random Cover
 							</Button>
 							<Button
 								// onClick={handleClose}
 								sx={{
 									color: "#FEF7EE",
+									background: "#DD524C",
 									width: "5.75rem",
 									fontSize: ".875rem",
 									textTransform: "none",
 									borderRadius: "2.5rem",
 								}}
 							>
-								Cancel
+								Remove
 							</Button>
 						</div>
 					</div>
+					<FormControl
+						variant="standard"
+						sx={{
+							width: '100%'
+						}}
+					>
+						<InputLabel  
+							htmlFor="task-name-input"
+							sx={{
+								color: '#7E878D !important',
+							}}
+						>
+							Task name
+						</InputLabel>
+						<InputField defaultValue="New tasks awaits..." id="task-name-input" />
+					</FormControl>
 				</DialogContent>
 				<DialogActions
 					sx={{
