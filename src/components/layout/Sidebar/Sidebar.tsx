@@ -11,7 +11,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Drawer, DrawerHeader, drawerWidth } from "../../../constants/drawer";
 import { Boards } from "../";
-import {  Logo } from "../../icons";
+import { Logo } from "../../icons";
 import AddBoard from "../../AddBoard/AddBoard";
 
 export function Sidebar() {
